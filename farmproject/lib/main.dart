@@ -2,6 +2,7 @@
 
 import 'package:farmproject/screens/home/homepage.dart';
 import 'package:farmproject/screens/signin/signin_screen.dart';
+import 'package:farmproject/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: SignInScreen(),
+      home: SignUpScreen(),
     );
   }
 }

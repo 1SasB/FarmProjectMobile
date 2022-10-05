@@ -3,16 +3,19 @@
 import 'package:farmproject/screens/home/homepage.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   bool showPass = false;
   @override
@@ -30,7 +33,7 @@ class _SignInScreenState extends State<SignInScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Enter Email and Password to Login',
+                  'Signup to start trading',
                   style: Theme.of(context).textTheme.headline4,
                 ),
               ),
@@ -48,6 +51,24 @@ class _SignInScreenState extends State<SignInScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  controller: _nameController,
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    label: Text('name'),
+                    suffixIcon: Icon(Icons.person),
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Field cannot be empty';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -60,6 +81,24 @@ class _SignInScreenState extends State<SignInScreen> {
                       return 'Field cannot be empty';
                     } else if (!value.contains('@')) {
                       return 'Enter valid email';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: _phoneController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    label: Text('phone number'),
+                    suffixIcon: Icon(Icons.phone),
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Field cannot be empty';
                     }
                     return null;
                   },
@@ -108,7 +147,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Size(MediaQuery.of(context).size.width - 100, 50),
                     backgroundColor: Colors.green),
                 child: Text(
-                  'Login',
+                  'Regiser',
                   style: TextStyle(color: Colors.white),
                 ),
               )
