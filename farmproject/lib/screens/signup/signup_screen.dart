@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:farmproject/providers/user.dart';
 import 'package:farmproject/screens/home/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool showPass = false;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<User>(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -138,8 +141,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (ctx) => HomePage()));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (ctx) => HomePage()));
+                    userProvider.registerUser(
+                        name: _nameController.text.trim(),
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim());
                   }
                 },
                 style: TextButton.styleFrom(
